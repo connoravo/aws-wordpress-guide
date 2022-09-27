@@ -54,22 +54,6 @@ http {
     # for more information.
     include /etc/nginx/conf.d/*.conf;
 
-    server {
-        listen       80;
-        server_name  _;
-        root         /usr/share/nginx/html;
-
-        # Load configuration files for the default server block.
-        include /etc/nginx/default.d/*.conf;
-
-        error_page 404 /404.html;
-        location = /404.html {
-        }
-
-        error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-        }
-    }
 }
 EOF
 
@@ -104,8 +88,8 @@ EOF
 
 sudo sed -i 's/user = apache/user = nginx/g' /etc/opt/remi/php81/php-fpm.d/www.conf
 sudo sed -i 's/group = apache/group = nginx/g' /etc/opt/remi/php81/php-fpm.d/www.conf
-sudo sed -i 's/;listen.owner = apache/listen.owner = nginx/g' /etc/opt/remi/php81/php-fpm.d/www.conf
-sudo sed -i 's/;listen.group = apache/listen.group = nginx/g' /etc/opt/remi/php81/php-fpm.d/www.conf
+sudo sed -i 's/;listen.owner = nobody/listen.owner = nginx/g' /etc/opt/remi/php81/php-fpm.d/www.conf
+sudo sed -i 's/;listen.group = nobody/listen.group = nginx/g' /etc/opt/remi/php81/php-fpm.d/www.conf
 sudo sed -i 's/;listen.mode = 0660/listen.mode = 0660/g' /etc/opt/remi/php81/php-fpm.d/www.conf
 
 sudo sed -i 's/listen = 127.0.0.1:9000/listen = unix:\/var\/run\/php-fpm.sock/g' /etc/opt/remi/php81/php-fpm.d/www.conf
