@@ -1,5 +1,10 @@
 #! /bin/bash
 
+echo "######################################"
+echo "#      Configuring WordPress         #"
+echo "######################################"
+
+
 # Install services
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
 sudo yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -127,3 +132,7 @@ sudo find . -type f -exec chmod 644 {} \;
 # Start services
 sudo service php81-php-fpm start
 sudo service nginx start
+
+echo "######################################"
+echo "#  WordPress configuration complete  #"
+echo "######################################"
